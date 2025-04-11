@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisneyBattle.API", "DisneyBattle.API\DisneyBattle.API.csproj", "{B4901AA7-3D5A-43DE-B8C9-E62DCB997710}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisneyBattle.Front", "DisneyBattle.Front\DisneyBattle.Front.csproj", "{EDF4ECCB-376F-4774-8806-8033E264EE40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisneyBattle.DAL", "DisneyBattle.DAL\DisneyBattle.DAL.csproj", "{07CC943B-46E1-4FD8-8B5F-1D48DF6F85C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisneyBattle.BLL", "DisneyBattle.BLL\DisneyBattle.BLL.csproj", "{607414B6-623C-4710-9754-236415703D56}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B4901AA7-3D5A-43DE-B8C9-E62DCB997710}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4901AA7-3D5A-43DE-B8C9-E62DCB997710}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4901AA7-3D5A-43DE-B8C9-E62DCB997710}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4901AA7-3D5A-43DE-B8C9-E62DCB997710}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDF4ECCB-376F-4774-8806-8033E264EE40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDF4ECCB-376F-4774-8806-8033E264EE40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDF4ECCB-376F-4774-8806-8033E264EE40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDF4ECCB-376F-4774-8806-8033E264EE40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07CC943B-46E1-4FD8-8B5F-1D48DF6F85C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07CC943B-46E1-4FD8-8B5F-1D48DF6F85C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07CC943B-46E1-4FD8-8B5F-1D48DF6F85C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07CC943B-46E1-4FD8-8B5F-1D48DF6F85C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{607414B6-623C-4710-9754-236415703D56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{607414B6-623C-4710-9754-236415703D56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{607414B6-623C-4710-9754-236415703D56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{607414B6-623C-4710-9754-236415703D56}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

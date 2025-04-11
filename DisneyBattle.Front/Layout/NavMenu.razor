@@ -1,0 +1,25 @@
+﻿<MudAppBar Elevation="1">
+    <MudText Typo="Typo.h5" Class="ml-3"><img src="./img/disney-logo.png"  height="70px" /></MudText>
+    <MudSpacer />
+    <MudNavMenu Class="d-flex flex-row  my-custom-navmenu">
+        <MudNavLink Href="/" Match="NavLinkMatch.All">Homepage</MudNavLink>
+        <MudNavLink Href="/Personnages">Personnages</MudNavLink>
+        <MudNavLink Href="/Equipes">Equipes</MudNavLink>
+        <MudNavLink Href="/Combats">Combats</MudNavLink>
+        <MudNavLink Href="/Palmares">Palmares</MudNavLink>
+    </MudNavMenu>
+    <MudSpacer /> 
+     <AuthorizeView>
+                <NotAuthorized>
+                    <MudIconButton Icon="@profileIcon" Color="Color.Inherit" Edge="Edge.End" Href="/Login" />                       
+                </NotAuthorized>
+                <Authorized> 
+                     <a href="/Secured"><img src="img/profile-icon.png" />Profil de @userName</a>
+                </Authorized>
+            </AuthorizeView>
+</MudAppBar>
+
+@code
+{
+    private const string profileIcon = "<image width=\"20\" height=\"20\" xlink:href=\"img/profile-icon.png\" />";
+}

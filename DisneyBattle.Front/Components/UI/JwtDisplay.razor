@@ -1,0 +1,11 @@
+﻿@using DisneyBattle.Front.Services.Interfaces 
+<p>@token</p>
+@if (claims != null)
+{
+    <ul>
+        @foreach (var claim in claims)
+        {
+            <li>@claim.Key : @claim.Value</li>
+        }
+    </ul>
+} 

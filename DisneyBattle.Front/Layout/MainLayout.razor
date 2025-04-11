@@ -1,0 +1,24 @@
+﻿@inherits LayoutComponentBase
+@inject IJSRuntime JSRuntime
+<MudThemeProvider />
+<MudDialogProvider />
+<MudLayout>
+    <NavMenu />
+    <MudMainContent>
+        @Body
+    </MudMainContent>
+</MudLayout>
+
+@code
+{
+
+
+    protected  override async Task OnAfterRenderAsync (bool firstRender)
+    {
+        if(firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("loadingFunctions.blazorReady");
+        }
+    }
+
+}

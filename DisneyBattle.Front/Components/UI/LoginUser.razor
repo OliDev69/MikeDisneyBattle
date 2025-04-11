@@ -1,0 +1,59 @@
+﻿<MudCard Class="pa-4">
+    <MudText Typo="Typo.h5" Class="mb-4">Connexion</MudText>
+    <MudForm @ref="loginForm" Model="@loginModel" @bind-IsValid="@loginSuccess">
+        <MudTextField T="string"
+                      @bind-Value="loginModel.Pseudo"
+                      Label="Pseudo"
+                      Required="true"
+                      RequiredError="Le pseudo est requis!"
+                      Variant="Variant.Outlined"
+                      Class="mb-4"
+                      Adornment="Adornment.Start"
+                      AdornmentIcon="@Icons.Material.Filled.PersonPin" />
+
+        <MudTextField T="string"
+                      @bind-Value="loginModel.Password"
+                      Label="Password"
+                      Required="true"
+                      RequiredError="Password is required!"
+                      Variant="Variant.Outlined"
+                      InputType="InputType.Password"
+                      Class="mb-4"
+                      Adornment="Adornment.Start"
+                      AdornmentIcon="@Icons.Material.Filled.Lock" />
+
+        <div class="d-flex justify-space-between align-center">
+            <MudButton Variant="Variant.Filled"
+                       Color="Color.Error"
+                       Class="ml-auto mb-4"
+                       onClick="@SubmitLogin"
+                       Disabled="@(!loginSuccess)">
+                Connectez-vous
+            </MudButton>
+
+        </div>
+    </MudForm>
+
+    <MudLink Href="/forgot-password" Class="mb-4 d-block">
+        Mot de passe oublié ?
+    </MudLink>
+    <button @onclick="LoginWithAzure" class="ms-login-button">
+        <svg class="ms-logo" width="21" height="21" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="1" width="9" height="9" fill="#F25022" />
+            <rect x="1" y="11" width="9" height="9" fill="#00A4EF" />
+            <rect x="11" y="1" width="9" height="9" fill="#7FBA00" />
+            <rect x="11" y="11" width="9" height="9" fill="#FFB900" />
+        </svg>
+        <span>Sign in with Microsoft</span>
+    </button>
+</MudCard>
+<MudOverlay Visible="@isLoading" DarkBackground="true" Absolute="true">
+    <svg class="mickey-loader" viewBox="0 0 100 100">
+        <!-- Tête de Mickey -->
+        <circle cx="50" cy="50" r="35" fill="#000" />
+        <!-- Oreille gauche -->
+        <circle cx="20" cy="20" r="20" fill="#000" />
+        <!-- Oreille droite -->
+        <circle cx="80" cy="20" r="20" fill="#000" />
+    </svg>
+</MudOverlay>

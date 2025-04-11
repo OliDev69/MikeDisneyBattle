@@ -1,0 +1,24 @@
+﻿@using System.Text
+@using System.Text.RegularExpressions
+@inherits ComponentBase
+@code {
+    [Parameter] public PersonnageCard? Item { get; set; }
+
+    private string imgPath { get; set; }  
+
+    protected override void OnInitialized()
+    {
+        imgPath = $"https://localhost:7104/assets/Media/Cards/{RemoveAccents(Item.Nom.Replace(" ", "_"))}_exp{Item.Experience}.jpg";
+    }
+
+    public  string RemoveAccents(string text)
+    {
+        if (string.IsNullOrWhiteSpace(text))
+            return text;
+
+        string normalized = text.Normalize(NormalizationForm.FormD);
+        Regex regex = new Regex(@"\p{Mn}");
+        return regex.Replace(normalized, "").Normalize(NormalizationForm.FormC);
+    }
+}
+<MudImage Fluid="true" Src="@imgPath" Alt="@Item.Nom" Class="rounded-lg" Width="200" Height="150" />

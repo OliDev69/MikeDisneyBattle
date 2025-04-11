@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DisneyBattle</title>
+    <base href="/" />
+    <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
+    <link href="DisneyBattle.Front.styles.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <style>
+        .mud-navmenu.mud-navmenu-default .mud-nav-link.active:not(.mud-nav-link-disabled) {
+            color: white;
+            background-color: var(--mud-palette-action-default-hover);
+        }
+        .loading-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            z-index: 9999;
+        }
+
+        .mickey-loader {
+            width: 100px;
+            height: 100px;
+            animation: pulse 1.5s infinite ease-in-out;
+            margin-bottom: 1rem;
+        }
+
+        .loading-progress-text {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            margin-top: 1rem;
+        }
+
+            .loading-progress-text:after {
+                content: var(--blazor-load-percentage-text, "Loading");
+            }
+
+        .loading-progress-bar {
+            width: 200px;
+            height: 4px;
+            background-color: #eee;
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+        }
+
+            .loading-progress-bar::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: var(--blazor-load-percentage, 0%);
+                background-color: #000;
+                transition: width 0.2s ease-in-out;
+            }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .mud-layout {
+            display: none;
+        }
+
+        .loading-complete .mud-layout {
+            display: flex;
+        }
+
+        .loading-complete .loading-container {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="loading-container">
+            <svg class="mickey-loader" viewBox="0 0 100 100">
+                <!-- Tête de Mickey -->
+                <circle cx="50" cy="50" r="35" fill="#000" />
+                <!-- Oreille gauche -->
+                <circle cx="20" cy="20" r="20" fill="#000" />
+                <!-- Oreille droite -->
+                <circle cx="80" cy="20" r="20" fill="#000" />
+            </svg>
+            <div class="loading-progress-bar"></div>
+            <div class="loading-progress-text"></div>
+        </div>
+    </div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+
+    <script src="_content/Microsoft.Authentication.WebAssembly.Msal/AuthenticationService.js"></script>
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script src="_content/MudBlazor/MudBlazor.min.js"></script>
+    <script>
+        // Définir la fonction dans l'espace global
+        window.loadingFunctions = {
+            blazorReady: function () {
+                document.body.classList.add('loading-complete');
+            }
+        };
+    </script>
+</body>
+</html>

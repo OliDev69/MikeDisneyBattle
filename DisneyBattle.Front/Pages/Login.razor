@@ -1,0 +1,19 @@
+﻿@page "/login"
+@attribute [AllowAnonymous]
+@using MudBlazor
+@using System.ComponentModel.DataAnnotations 
+<MudPopoverProvider />
+<MudContainer MaxWidth="MaxWidth.Large" Class="mt-16">
+    <div style="background-image: url('img/banner.jpg'); background-size: contain ; padding: 2rem; min-height:235px;">
+        
+    </div>
+    <MudGrid Class="mt-8">
+        <MudItem xs="12" md="6">
+          <DisneyBattle.Front.Components.UI.LoginUser></DisneyBattle.Front.Components.UI.LoginUser>
+        </MudItem>
+        <MudItem xs="12" md="6">
+            <DisneyBattle.Front.Components.UI.RegisterUser></DisneyBattle.Front.Components.UI.RegisterUser>
+        </MudItem>
+    </MudGrid>
+</MudContainer>
+

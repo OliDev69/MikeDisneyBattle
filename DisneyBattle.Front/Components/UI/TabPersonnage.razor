@@ -1,0 +1,107 @@
+﻿@using System.Net.Http.Json 
+
+@inject HttpClient httpClient
+
+<MudDataGrid T="PersonnageCard" Items="@Elements" Filterable="true" FilterMode="@DataGridFilterMode.ColumnFilterRow" MultiSelection="true" FixedHeader="true" FixedFooter="true" RowsPerPage="5">
+     <Columns>
+        <PropertyColumn Property="x => x.Id" Title="Id" Filterable="false" />        
+             <!-- Nouvelle colonne après Id -->
+        <PropertyColumn Property="x => x.Experience" Title="Avatar" Filterable="false">
+            <CellTemplate Context="context">
+                 <MudStack Alignment="Center"> 
+                    <PersonCard Item="context.Item"></PersonCard> 
+                     </MudStack> 
+            </CellTemplate>
+        </PropertyColumn> 
+        <PropertyColumn Property="x => x.PointsVie" Title="Vie" />
+        <PropertyColumn Property="x => x.PointsAttaque" Title="Attaque" />
+        <PropertyColumn Property="x => x.PointsDefense" Title="Defense" />
+        <TemplateColumn Title="Actions">
+            <CellTemplate Context="context">
+                <MudButton OnClick="() => SelectPersonnage(context.Item)" Color="Color.Primary">
+                    Sélectionner
+                </MudButton>
+            </CellTemplate>
+        </TemplateColumn>
+    </Columns>
+    <PagerContent>
+        <MudDataGridPager T="PersonnageCard" />
+    </PagerContent>
+</MudDataGrid>
+
+@code {
+    IEnumerable<PersonnageCard> Elements = new List<PersonnageCard>();
+    HashSet<PersonnageCard> _selectedItems = new();
+    HashSet<PersonnageCard> _filterItems = new();
+    FilterDefinition<PersonnageCard> _filterDefinition;
+    bool _selectAll = true;
+    string _icon = Icons.Material.Outlined.FilterAlt;
+
+    bool _filterOpen = false;
+    private PersonnageCard? selectedPersonnage;
+
+    private void SelectPersonnage(PersonnageCard personnage)
+    {
+        selectedPersonnage = personnage;
+        Console.WriteLine($"Personnage sélectionné : {personnage.Nom}");
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        Elements = await httpClient.GetFromJsonAsync<List<PersonnageCard>>("https://localhost:7104/api/Personnage");
+        _selectedItems = Elements.ToHashSet();
+        _filterItems = Elements.ToHashSet();
+        _filterDefinition = new FilterDefinition<PersonnageCard>
+            {
+                FilterFunction = x => _filterItems.Contains(x)
+            };
+    }
+
+    void OpenFilter()
+    {
+        _filterOpen = true;
+    }
+
+    private void SelectedChanged(bool value, PersonnageCard item)
+    {
+        if (value)
+            _selectedItems.Add(item);
+        else
+            _selectedItems.Remove(item);
+
+        if (_selectedItems.Count == Elements.Count())
+            _selectAll = true;
+        else
+            _selectAll = false;
+    }
+
+    private async Task ClearFilterAsync(FilterContext<PersonnageCard> context)
+    {
+        _selectedItems = Elements.ToHashSet();
+        _filterItems = Elements.ToHashSet();
+        _icon = Icons.Material.Outlined.FilterAlt;
+        await context.Actions.ClearFilterAsync(_filterDefinition);
+        _filterOpen = false;
+    }
+
+    private async Task ApplyFilterAsync(FilterContext<PersonnageCard> context)
+    {
+        _filterItems = _selectedItems.ToHashSet();
+        _icon = _filterItems.Count == Elements.Count() ? Icons.Material.Outlined.FilterAlt : Icons.Material.Filled.FilterAlt;
+        await context.Actions.ApplyFilterAsync(_filterDefinition);
+        _filterOpen = false;
+    }
+
+    private void SelectAll(bool value)
+    {
+        _selectAll = value;
+
+        if (value)
+        {
+            _selectedItems = Elements.ToHashSet();
+        }
+        else
+        {
+            _selectedItems.Clear();
+        }
+    }
+}

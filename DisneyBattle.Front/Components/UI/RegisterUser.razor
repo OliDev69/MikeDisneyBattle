@@ -1,0 +1,62 @@
+﻿@using System.ComponentModel.DataAnnotations
+<MudCard Class="pa-4">
+    <MudText Typo="Typo.h5" Class="mb-4">Inscrivez-vous</MudText>
+    <MudForm @ref="registerForm" Model="@registerModel" @bind-IsValid="@registerSuccess">
+        <MudTextField T="string"
+                      @bind-Value="registerModel.Pseudo"
+                      Label="Pseudo"
+                      Required="true"
+                      RequiredError="Le pseudo est requis!"
+                      Variant="Variant.Outlined"
+                      Class="mb-4"
+                      Adornment="Adornment.Start"
+                      AdornmentIcon="@Icons.Material.Filled.Person" />
+
+        <MudTextField T="string"
+                      @bind-Value="registerModel.Email"
+                      Label="Email address"
+                      Required="true"
+                      RequiredError="l'Email est requis!"
+                      Validation="@(new EmailAddressAttribute() {ErrorMessage = "L'adresse em-mail est invalide'"})"
+                      Variant="Variant.Outlined"
+                      Class="mb-4"
+                      Adornment="Adornment.Start"
+                      AdornmentIcon="@Icons.Material.Filled.Email" />
+
+        <MudTextField T="string"
+                      @bind-Value="registerModel.MotDePasse"
+                      Label="Mot de passe"
+                      Required="true"
+                      RequiredError="Mot de passe requis!"
+                      Variant="Variant.Outlined"
+                      InputType="InputType.Password"
+                      Class="mb-4"
+                      Adornment="Adornment.Start"
+                      AdornmentIcon="@Icons.Material.Filled.Lock" />
+
+        <MudTextField T="string"
+                      @bind-Value="registerModel.MotDePasseConfirmation"
+                      Label="Confirmer le mot de passe"
+                      Required="true"
+                      RequiredError="La confirmation du mot de passe est requise!"
+                      Validation="@(new Func<string, string>(PasswordMatch))"
+                      Variant="Variant.Outlined"
+                      InputType="InputType.Password"
+                      Class="mb-4"
+                      Adornment="Adornment.Start"
+                      AdornmentIcon="@Icons.Material.Filled.Lock" />
+
+        <MudButton Variant="Variant.Filled"
+                   Color="Color.Error"
+                   FullWidth="true"
+                   Class="mb-4"
+                   Disabled="@(!registerSuccess)"
+                   onclick="@SubmitRegister">
+            Enregistrez-vous
+        </MudButton>
+    </MudForm>   
+</MudCard>
+
+@code {
+
+}
