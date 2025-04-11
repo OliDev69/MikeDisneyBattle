@@ -11,11 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisneyBattle.DAL", "DisneyB
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisneyBattle.BLL", "DisneyBattle.BLL\DisneyBattle.BLL.csproj", "{607414B6-623C-4710-9754-236415703D56}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Éléments de solution", "Éléments de solution", "{4C19909F-A104-49C6-9C07-51829BE01264}"
-	ProjectSection(SolutionItems) = preProject
-		main.yml = main.yml
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6CF12D42-234D-4234-A6A0-643BFF2B7D6F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisneyBattleTests", "DisneyBattleTests\DisneyBattleTests.csproj", "{F8F802A6-2145-41FB-B12A-C4BD94D5D600}"
