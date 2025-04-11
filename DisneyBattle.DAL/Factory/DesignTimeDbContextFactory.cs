@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BCrypt.Net;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DisneyBattle.DAL.Factory
 {
@@ -17,7 +20,7 @@ namespace DisneyBattle.DAL.Factory
              
 
             // Obtenir la chaîne de connexion
-            string connectionString = "Data Source=LENOMIKE\\TFTIC2022;Initial Catalog=DisneyBattle;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False";
+            string connectionString = "Data Source = (localdb)\\MSSQLLocalDB;Initial Catalog=DisneyBattle;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False";
 
             // Configurer les options du DbContext
             var optionsBuilder = new DbContextOptionsBuilder<DisneyBattleContext>();
