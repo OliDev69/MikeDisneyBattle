@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DisneyBattle.DAL.Entities;
 
-public partial class Utilisateur
+public partial class UtilisateurModel
 {
     public int Id { get; set; }
 

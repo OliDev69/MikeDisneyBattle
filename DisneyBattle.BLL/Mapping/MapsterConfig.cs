@@ -13,7 +13,7 @@ namespace DisneyBattle.BLL.Mapping
     {
         public static void Configure()
         {
-            TypeAdapterConfig<Utilisateur, UtilisateurModel>.NewConfig()
+            TypeAdapterConfig<UtilisateurModel, UtilisateurModel>.NewConfig()
                .Map(dest => dest.Id, src => src.Id)
 
                .Map(dest => dest.Pseudo, src => src.Pseudo)
@@ -27,7 +27,7 @@ namespace DisneyBattle.BLL.Mapping
 
                .Map(dest => dest.AccessToken, src => src.AccessToken);
 
-            TypeAdapterConfig<UtilisateurModel, Utilisateur>.NewConfig()
+            TypeAdapterConfig<UtilisateurModel, UtilisateurModel>.NewConfig()
                 .IgnoreNullValues(true) 
                 .Map(dest => dest.Id, src => src.Id)
 

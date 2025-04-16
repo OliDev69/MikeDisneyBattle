@@ -18,25 +18,25 @@ public class UtilisateurService : IUserService
         _mapper = mapper;
     }
 
-    public async Task<IEnumerable<UtilisateurModel>> GetAllAsync()
+    public async Task<IEnumerable<Models.UtilisateurModel>> GetAllAsync()
     {
         return (await _unitOfWork.Utilisateurs.GetAllAsync()).Select(m=> _mapper.Map<UtilisateurModel>(m));
     }
 
-    public async Task<UtilisateurModel> GetByIdAsync(int id)
+    public async Task<Models.UtilisateurModel> GetByIdAsync(int id)
     {
-        return _mapper.Map < UtilisateurModel > (await _unitOfWork.Utilisateurs.GetByIdAsync(id));
+        return _mapper.Map <Models.UtilisateurModel > (await _unitOfWork.Utilisateurs.GetByIdAsync(id));
     }
 
-    public async Task AddAsync(UtilisateurModel entity)
+    public async Task AddAsync(Models.UtilisateurModel entity)
     {
-        Utilisateur u = _mapper.Map<Utilisateur>(entity);
+        DAL.Entities.UtilisateurModel u = _mapper.Map<DAL.Entities.UtilisateurModel>(entity);
         await _unitOfWork.Utilisateurs.AddAsync(u);
     }
 
-    public async Task UpdateAsync(UtilisateurModel entity)
+    public async Task UpdateAsync(Models.UtilisateurModel entity)
     {
-        Utilisateur u = _mapper.Map<Utilisateur>(entity);
+        DAL.Entities.UtilisateurModel u = _mapper.Map<DAL.Entities.UtilisateurModel>(entity);
         await _unitOfWork.Utilisateurs.UpdateAsync(u);
     }
 
@@ -45,10 +45,10 @@ public class UtilisateurService : IUserService
         await _unitOfWork.Utilisateurs.DeleteAsync(id);
     }
 
-    public UtilisateurModel? Authenticate(string username, string password)
+    public Models.UtilisateurModel? Authenticate(string username, string password)
     {
-        Utilisateur? u = _unitOfWork.Utilisateurs.Authenticate(username, password);
-        return u == null ? default(UtilisateurModel) : _mapper.Map<UtilisateurModel>(u);
+        DAL.Entities.UtilisateurModel? u = _unitOfWork.Utilisateurs.Authenticate(username, password);
+        return u == null ? default(Models.UtilisateurModel) : _mapper.Map<Models.UtilisateurModel>(u);
     }
 
     public bool Checkrefresh(string access_Token, string refresh_Token)
@@ -56,10 +56,10 @@ public class UtilisateurService : IUserService
         return (_unitOfWork.Utilisateurs.Checkrefresh(access_Token,refresh_Token));
     }
 
-    public UtilisateurModel? GetByEmail(string email)
+    public Models.UtilisateurModel? GetByEmail(string email)
     {
-        Utilisateur? u = _unitOfWork.Utilisateurs.GetByEmail(email);
-        return u == null ? default(UtilisateurModel) : _mapper.Map<UtilisateurModel>(u);
+        DAL.Entities.UtilisateurModel? u = _unitOfWork.Utilisateurs.GetByEmail(email);
+        return u == null ? default(Models.UtilisateurModel) : _mapper.Map<Models.UtilisateurModel>(u);
     }
 
 }

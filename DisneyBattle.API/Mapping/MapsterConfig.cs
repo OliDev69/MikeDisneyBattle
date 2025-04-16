@@ -14,7 +14,7 @@ namespace DisneyBattle.API.Mapping
     {
         public static void Configure()
         {
-            TypeAdapterConfig<UserDto, UtilisateurModel>.NewConfig()
+            TypeAdapterConfig<UserDto, BLL.Models.UtilisateurModel>.NewConfig()
                .Map(dest => dest.Id, src => src.Id)
 
                .Map(dest => dest.Pseudo, src => src.Username)
@@ -23,19 +23,19 @@ namespace DisneyBattle.API.Mapping
 
                .Map(dest => dest.AccessToken, src => src.AccessToken);
 
-            TypeAdapterConfig<UtilisateurModel, UserDto>.NewConfig()
+            TypeAdapterConfig<BLL.Models.UtilisateurModel, UserDto>.NewConfig()
 
                 .Map(dest => dest.Id, src => src.Id)
                 .Map(dest => dest.Username, src => src.Pseudo)
                .Map(dest => dest.RefreshToken, src => src.RefreshToken)
 
                .Map(dest => dest.AccessToken, src => src.AccessToken);
-            
-            TypeAdapterConfig<UserForm, UtilisateurModel>.NewConfig()
+
+            TypeAdapterConfig<UserForm, BLL.Models.UtilisateurModel>.NewConfig()
                  
                 .Map(dest => dest.Pseudo, src => src.Pseudo)
-                .Map(dest => dest.Email, src=>src.Email)
-                .Map(dest=> dest.MotDePasse, src=>src.MotDePasse);
+                .Map(dest => dest.Email, src=> src.Email)
+                .Map(dest=> dest.MotDePasse, src=> src.MotDePasse);
 
         }
     }

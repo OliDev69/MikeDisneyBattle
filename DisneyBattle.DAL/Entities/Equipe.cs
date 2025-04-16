@@ -21,5 +21,5 @@ public partial class Equipe
 
     public virtual ICollection<EquipesPersonnage> EquipesPersonnages { get; set; } = new List<EquipesPersonnage>();
 
-    public virtual Utilisateur Utilisateur { get; set; } = null!;
+    public virtual UtilisateurModel Utilisateur { get; set; } = null!;
 }

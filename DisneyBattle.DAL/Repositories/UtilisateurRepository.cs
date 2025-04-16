@@ -3,20 +3,20 @@ using BCrypt.Net;
 using Microsoft.EntityFrameworkCore; 
 namespace DisneyBattle.DAL.Repositories
 {
-    public class UtilisateurRepository : BaseRepository<Utilisateur>
+    public class UtilisateurRepository : BaseRepository<UtilisateurModel>
     {
         public UtilisateurRepository(DbContext context) : base(context) { }
 
-        public override async Task AddAsync(Utilisateur entity)
+        public override async Task AddAsync(UtilisateurModel entity)
         {
             entity.DateInscription = DateTime.Now;
             entity.MotDePasse =BCrypt.Net.BCrypt.HashPassword(entity.MotDePasse);
             await base.AddAsync(entity);
         }
 
-        public override Task UpdateAsync(Utilisateur user)
+        public override Task UpdateAsync(UtilisateurModel user)
         { 
-            Utilisateur? entity = _dbSet.SingleOrDefault(u=>u.Id == user.Id);
+            UtilisateurModel? entity = _dbSet.SingleOrDefault(u=>u.Id == user.Id);
             if (entity == null) { throw new InvalidDataException("No user to update"); } 
             entity.Pseudo= user.Pseudo;
             entity.Email= user.Email??entity.Email;
@@ -25,9 +25,9 @@ namespace DisneyBattle.DAL.Repositories
             entity.MotDePasse = entity.MotDePasse;
             return base.UpdateAsync(entity);
         }
-        public Utilisateur? Authenticate(string username, string password)
+        public UtilisateurModel? Authenticate(string username, string password)
         {
-            Utilisateur? user = _context.Utilisateurs.SingleOrDefault(x => x.Pseudo == username);
+            UtilisateurModel? user = _context.Utilisateurs.SingleOrDefault(x => x.Pseudo == username);
 
             if (user == null)
             {
@@ -46,9 +46,9 @@ namespace DisneyBattle.DAL.Repositories
             return user != null;
         }
 
-        public Utilisateur? GetByEmail(string email)
+        public UtilisateurModel? GetByEmail(string email)
         {
-            Utilisateur? user = _context.Utilisateurs.SingleOrDefault(x => x.Email == email);
+            UtilisateurModel? user = _context.Utilisateurs.SingleOrDefault(x => x.Email == email);
 
             return user;
         }

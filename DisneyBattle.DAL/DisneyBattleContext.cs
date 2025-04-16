@@ -38,7 +38,7 @@ public partial class DisneyBattleContext : DbContext
 
     public virtual DbSet<TypePersonnage> TypePersonnages { get; set; }
 
-    public virtual DbSet<Utilisateur> Utilisateurs { get; set; }
+    public virtual DbSet<UtilisateurModel> Utilisateurs { get; set; }
 
     //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
  
@@ -329,7 +329,7 @@ public partial class DisneyBattleContext : DbContext
                 .HasColumnName("nom");
         });
 
-        modelBuilder.Entity<Utilisateur>(entity =>
+        modelBuilder.Entity<UtilisateurModel>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__utilisat__3213E83F47B22DBD");
 
